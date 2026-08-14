@@ -106,7 +106,7 @@ export default function Marquee({
     x.set(current);
   });
 
-  const items = Array.from({ length: 10 }, () => text);
+  const items = Array.from({ length: 4 }, () => text);
 
   return (
     <div
@@ -126,7 +126,7 @@ export default function Marquee({
               mx-8
               flex-shrink-0
               whitespace-nowrap
-              text-[8rem]
+              text-[4rem] md:text-[6rem] lg:text-[8rem]
               font-black
               uppercase
               tracking-[-6px]

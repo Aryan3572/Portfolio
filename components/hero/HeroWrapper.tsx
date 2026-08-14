@@ -46,16 +46,6 @@ export default function HeroWrapper() {
     [0, 48]
   );
 
-  const shadowOpacity = useTransform(
-    scrollYProgress,
-    [0, 1],
-    [0.08, 0.22]
-  );
-
-  const boxShadow = useMotionTemplate`
-    0px 50px 120px rgba(0,0,0,${shadowOpacity})
-  `;
-
   /* ----------------------------------
      TEMPORARY V MASK
   ----------------------------------- */
@@ -95,7 +85,6 @@ export default function HeroWrapper() {
           y,
           rotateX,
           borderRadius,
-          boxShadow,
           transformStyle: "preserve-3d",
           transformOrigin: "center top",
         }}
@@ -106,6 +95,7 @@ export default function HeroWrapper() {
           overflow-hidden
           bg-[#F7F7F5]
           will-change-transform
+          shadow-[0_50px_120px_rgba(0,0,0,0.15)]
         "
       >
         <motion.div
