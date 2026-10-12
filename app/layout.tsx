@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import type { Metadata, Viewport } from "next";
+import { Inter, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 
 import "./globals.css";
 
@@ -11,22 +11,34 @@ import { ScrollProvider } from "@/components/providers/ScrollProvider";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-sans",
+  display: "swap",
 });
 
-const geistSans = Geist({
+const instrumentSerif = Instrument_Serif({
   subsets: ["latin"],
-  variable: "--font-geist-sans",
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-serif",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
+const jetbrainsMono = JetBrains_Mono({
   subsets: ["latin"],
-  variable: "--font-geist-mono",
+  variable: "--font-mono",
+  display: "swap",
 });
+
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 5,
+  themeColor: "#FF5800",
+};
 
 export const metadata: Metadata = {
-  title: "Aryan Raj | Full Stack Developer",
+  title: "Aryan Raj — Full-Stack Engineer & Systems Architect",
   description:
-    "Portfolio of Aryan Raj - Full Stack Developer, Backend Engineer and System Architect.",
+    "Portfolio of Aryan Raj — Full-Stack Developer, Web3 Engineer, and Systems Architect. Specializing in high-performance web applications, distributed systems, and modern UI/UX.",
 };
 
 export default function RootLayout({
@@ -41,19 +53,20 @@ export default function RootLayout({
       className={cn(
         "h-full",
         "antialiased",
-        geistSans.variable,
-        geistMono.variable,
         inter.variable,
+        instrumentSerif.variable,
+        jetbrainsMono.variable,
         "font-sans"
       )}
     >
       <body
+        suppressHydrationWarning
         className="
           min-h-screen
           overflow-x-hidden
-          bg-[#F7F7F5]
-          text-black
-          selection:bg-black
+          bg-[#F5F4F3]
+          text-[#0A0A0A]
+          selection:bg-[#FF5800]
           selection:text-white
         "
       >

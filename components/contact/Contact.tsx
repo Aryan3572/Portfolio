@@ -1,128 +1,235 @@
 "use client";
 
-import { motion, animate } from "framer-motion";
-import { Mail, Phone, Send } from "lucide-react";
+import { motion } from "framer-motion";
+import { Mail, Phone, MapPin, Send, ArrowUpRight, ArrowUp } from "lucide-react";
+
+function GithubIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path fillRule="evenodd" clipRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" />
+    </svg>
+  );
+}
+
+function LinkedinIcon(props: React.SVGProps<SVGSVGElement>) {
+  return (
+    <svg viewBox="0 0 24 24" fill="currentColor" {...props}>
+      <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.88 8.56a1.68 1.68 0 0 0 1.68-1.68c0-.93-.75-1.69-1.68-1.69a1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68m1.39 9.94v-8.37H5.5v8.37h2.77z" />
+    </svg>
+  );
+}
 
 export default function Contact() {
   const scrollToTop = () => {
-    // Custom buttery-smooth scroll animation bypassing the browser's default speed
-    animate(window.scrollY, 0, {
-      duration: 1.5,
-      ease: [0.22, 1, 0.36, 1], // easeOutQuint curve for extremely smooth deceleration
-      onUpdate: (latest) => window.scrollTo(0, latest),
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
     });
   };
 
   return (
-    <section id="contact" className="relative w-full bg-white pt-32 pb-8 overflow-hidden border-t-[3px] border-black">
-      <div className="mx-auto w-full max-w-5xl px-6">
+    <section id="contact" className="relative w-full bg-[#F5F4F3] pt-20 sm:pt-28 lg:pt-36 pb-12 overflow-hidden border-t-2 border-black">
+      {/* Background dot pattern */}
+      <div className="absolute inset-0 bg-dot-pattern opacity-60 pointer-events-none" />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
-        {/* Header */}
-        <motion.div 
-           initial={{ opacity: 0, y: 40 }}
-           whileInView={{ opacity: 1, y: 0 }}
-           viewport={{ once: true, margin: "-100px" }}
-           transition={{ duration: 0.8, type: "spring", bounce: 0.4 }}
-           className="text-center mb-24 flex flex-col items-center"
-        >
-          <span className="mb-4 block text-sm font-bold tracking-widest text-[#ff5500] uppercase">06 Contact</span>
-          <h2 className="text-5xl font-black leading-tight tracking-tight text-black md:text-7xl mb-6">
-            Let&apos;s build something.
+        {/* Section Header */}
+        <div className="flex flex-col items-center text-center mb-12 sm:mb-16 lg:mb-20">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white border-2 border-black shadow-[2px_2px_0_0_#0A0A0A] mb-4">
+            <span className="w-2 h-2 rounded-full bg-[#FF5800]" />
+            <span className="text-xs font-mono font-bold tracking-widest text-[#0A0A0A] uppercase">
+              06 / GET IN TOUCH
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black tracking-tight text-[#0A0A0A] uppercase leading-[0.95]">
+            Let&apos;s build something <span className="text-[#FF5800]">great</span>.
           </h2>
-          <p className="text-lg font-medium text-neutral-500 max-w-xl">
-            Open to full-stack, Web3, and systems-focused roles and collaborations.
+
+          <p className="mt-4 text-lg sm:text-2xl font-serif italic text-neutral-700 max-w-xl">
+            Open to full-stack, Web3, and systems-focused engineering opportunities and collaborations.
           </p>
-        </motion.div>
+        </div>
 
-        <div className="flex flex-col md:flex-row gap-20 md:gap-8 justify-between">
+        {/* Two-Column Form & Info Grid */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-16 items-start">
           
-          {/* Left: Info */}
-          <motion.div 
-            initial={{ opacity: 0, x: -40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col flex-1 gap-12 md:pt-4 items-center md:items-start"
-          >
-            <div className="flex flex-col gap-8 w-full max-w-xs">
-              <a href="mailto:rajaryan3572@gmail.com" className="group flex items-center gap-6 w-fit">
-                <div className="w-14 h-14 rounded-full border-[3px] border-black flex items-center justify-center transition-transform group-hover:-translate-y-1 group-hover:bg-[#ff5500] group-hover:text-white bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                  <Mail className="w-6 h-6" />
+          {/* Left Column: Direct Info & Social Channels */}
+          <div className="lg:col-span-5 flex flex-col gap-6 sm:gap-8">
+            <div className="bg-white p-5 sm:p-8 lg:p-10 rounded-2xl sm:rounded-3xl border-2 border-black shadow-[4px_4px_0_0_#0A0A0A] sm:shadow-[6px_6px_0_0_#0A0A0A] flex flex-col gap-5 sm:gap-6">
+              <span className="text-xs font-mono font-bold text-neutral-500 uppercase tracking-widest">
+                DIRECT CONTACT
+              </span>
+
+              {/* Email */}
+              <a
+                href="mailto:rajaryan3572@gmail.com"
+                className="group flex items-center gap-4 p-3 rounded-2xl border-2 border-black/10 hover:border-black hover:bg-[#FFF0E6] transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#F5F4F3] border-2 border-black flex items-center justify-center text-[#0A0A0A] group-hover:bg-[#FF5800] group-hover:text-white transition-colors">
+                  <Mail className="w-5 h-5" />
                 </div>
-                <span className="text-lg font-bold text-neutral-600 group-hover:text-black transition-colors">rajaryan3572@gmail.com</span>
-              </a>
-
-              <a href="tel:+919905601175" className="group flex items-center gap-6 w-fit">
-                <div className="w-14 h-14 rounded-full border-[3px] border-black flex items-center justify-center transition-transform group-hover:-translate-y-1 group-hover:bg-[#ff5500] group-hover:text-white bg-white shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] group-hover:shadow-[6px_6px_0px_0px_rgba(0,0,0,1)]">
-                  <Phone className="w-6 h-6" />
+                <div className="flex flex-col truncate">
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">EMAIL ADDRESS</span>
+                  <span className="text-sm sm:text-base font-black text-[#0A0A0A] truncate">rajaryan3572@gmail.com</span>
                 </div>
-                <span className="text-lg font-bold text-neutral-600 group-hover:text-black transition-colors">+91 9905601175</span>
+              </a>
+
+              {/* Phone */}
+              <a
+                href="tel:+919905601175"
+                className="group flex items-center gap-4 p-3 rounded-2xl border-2 border-black/10 hover:border-black hover:bg-[#FFF0E6] transition-all"
+              >
+                <div className="w-12 h-12 rounded-xl bg-[#F5F4F3] border-2 border-black flex items-center justify-center text-[#0A0A0A] group-hover:bg-[#FF5800] group-hover:text-white transition-colors">
+                  <Phone className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">PHONE / WHATSAPP</span>
+                  <span className="text-sm sm:text-base font-black text-[#0A0A0A]">+91 9905601175</span>
+                </div>
+              </a>
+
+              {/* Location */}
+              <div className="flex items-center gap-4 p-3 rounded-2xl border-2 border-black/10">
+                <div className="w-12 h-12 rounded-xl bg-[#F5F4F3] border-2 border-black flex items-center justify-center text-[#0A0A0A]">
+                  <MapPin className="w-5 h-5" />
+                </div>
+                <div className="flex flex-col">
+                  <span className="text-[10px] font-mono text-neutral-500 uppercase">LOCATION</span>
+                  <span className="text-sm sm:text-base font-black text-[#0A0A0A]">Pune, Maharashtra, India</span>
+                </div>
+              </div>
+
+              {/* Status pill */}
+              <div className="mt-2 pt-4 border-t-2 border-neutral-100 flex items-center gap-2 text-xs font-mono font-bold text-neutral-700">
+                <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-ping" />
+                <span>Ready for high-impact teams & projects</span>
+              </div>
+            </div>
+
+            {/* Social Buttons */}
+            <div className="flex items-center gap-4">
+              <a
+                href="https://github.com/Aryan3572"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2.5 py-4 rounded-2xl bg-white border-2 border-black text-[#0A0A0A] text-xs font-black tracking-widest uppercase shadow-[4px_4px_0_0_#0A0A0A] hover:shadow-[5px_5px_0_0_#FF5800] hover:-translate-y-0.5 active:translate-y-0 transition-all"
+              >
+                <GithubIcon className="w-5 h-5" />
+                <span>GITHUB</span>
+              </a>
+
+              <a
+                href="https://www.linkedin.com/in/aryan-raj35/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 flex items-center justify-center gap-2.5 py-4 rounded-2xl bg-white border-2 border-black text-[#0A0A0A] text-xs font-black tracking-widest uppercase shadow-[4px_4px_0_0_#0A0A0A] hover:shadow-[5px_5px_0_0_#0A66C2] hover:-translate-y-0.5 active:translate-y-0 transition-all"
+              >
+                <LinkedinIcon className="w-5 h-5 text-[#0A66C2]" />
+                <span>LINKEDIN</span>
               </a>
             </div>
+          </div>
 
-            <div className="flex gap-6 mt-4">
-              <a href="https://github.com/Aryan3572" target="_blank" rel="noopener noreferrer" className="group w-16 h-16 rounded-full border-[3px] border-black flex items-center justify-center hover:bg-black hover:text-white transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_#ff5500] bg-white text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-                  <path d="M15 22v-4a4.8 4.8 0 0 0-1-3.2c3 0 6-2 6-5.6.5-1.2.5-2.5 0-3.4 0 0-1-0.2-2.3 0.7a9 9 0 0 0-4.6 0c-1.3-0.9-2.3-0.7-2.3-0.7-.5 0.9-.5 2.2 0 3.4 0 3.6 3 5.6 6 5.6-1 0-1.8 0.6-2 1.6-1.5 0.7-3 0.7-4.5 0-1.5-0.7-2-2-2-2-0.5-1.5-1.5-2-1.5-2-1 0-1 0.5-1 0.5 0.5 1 1.5 1.5 1.5 1.5 1 1.5 2 2 3.5 2 1.5 0 2 0 3-0.5v3.5"/>
-                </svg>
-              </a>
-              <a href="https://www.linkedin.com/in/aryan-raj35/" target="_blank" rel="noopener noreferrer" className="group w-16 h-16 rounded-full border-[3px] border-black flex items-center justify-center hover:bg-[#0A66C2] hover:text-white hover:border-[#0A66C2] transition-all hover:-translate-y-1 shadow-[4px_4px_0px_0px_rgba(0,0,0,1)] hover:shadow-[6px_6px_0px_0px_#ff5500] bg-white text-black">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="w-7 h-7">
-                  <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                  <rect width="4" height="12" x="2" y="9"/>
-                  <circle cx="4" cy="4" r="2"/>
-                </svg>
-              </a>
+          {/* Right Column: Interactive Form */}
+          <div className="lg:col-span-7">
+            <div className="bg-white p-5 sm:p-8 lg:p-12 rounded-2xl sm:rounded-3xl border-2 border-black shadow-[5px_5px_0_0_#0A0A0A] sm:shadow-[8px_8px_0_0_#0A0A0A]">
+              <span className="text-xs font-mono font-bold text-neutral-500 uppercase tracking-widest block mb-2">
+                SEND A MESSAGE
+              </span>
+              <h3 className="text-xl sm:text-3xl font-black text-[#0A0A0A] uppercase tracking-tight mb-6 sm:mb-8">
+                Drop your thoughts or opportunities
+              </h3>
+
+              <form
+                action="https://formsubmit.co/rajaryan3572@gmail.com"
+                method="POST"
+                className="flex flex-col gap-6"
+              >
+                <input type="hidden" name="_subject" value="New inquiry from Aryan's Portfolio!" />
+                <input type="hidden" name="_captcha" value="false" />
+                <input type="hidden" name="_template" value="box" />
+
+                {/* Name */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="name" className="text-xs font-mono font-black text-[#0A0A0A] uppercase tracking-wider">
+                    YOUR NAME
+                  </label>
+                  <input
+                    id="name"
+                    name="name"
+                    type="text"
+                    required
+                    placeholder="e.g. Satoshi Nakamoto"
+                    className="w-full px-4 py-3.5 rounded-xl border-2 border-black bg-[#F5F4F3] text-sm font-bold text-[#0A0A0A] placeholder-neutral-400 focus:outline-none focus:border-[#FF5800] focus:bg-white transition-all shadow-[2px_2px_0_0_#0A0A0A]"
+                  />
+                </div>
+
+                {/* Email */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="email" className="text-xs font-mono font-black text-[#0A0A0A] uppercase tracking-wider">
+                    YOUR EMAIL
+                  </label>
+                  <input
+                    id="email"
+                    name="email"
+                    type="email"
+                    required
+                    placeholder="e.g. satoshi@bitcoin.org"
+                    className="w-full px-4 py-3.5 rounded-xl border-2 border-black bg-[#F5F4F3] text-sm font-bold text-[#0A0A0A] placeholder-neutral-400 focus:outline-none focus:border-[#FF5800] focus:bg-white transition-all shadow-[2px_2px_0_0_#0A0A0A]"
+                  />
+                </div>
+
+                {/* Message */}
+                <div className="flex flex-col gap-2">
+                  <label htmlFor="message" className="text-xs font-mono font-black text-[#0A0A0A] uppercase tracking-wider">
+                    YOUR MESSAGE
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    required
+                    rows={4}
+                    placeholder="Tell me about your team, project, or vision..."
+                    className="w-full px-4 py-3.5 rounded-xl border-2 border-black bg-[#F5F4F3] text-sm font-bold text-[#0A0A0A] placeholder-neutral-400 focus:outline-none focus:border-[#FF5800] focus:bg-white transition-all shadow-[2px_2px_0_0_#0A0A0A] resize-none"
+                  />
+                </div>
+
+                {/* Submit Button */}
+                <button
+                  type="submit"
+                  className="mt-4 w-full sm:w-auto inline-flex items-center justify-center gap-3 px-8 py-4 rounded-full bg-[#FF5800] text-white text-xs sm:text-sm font-black tracking-widest uppercase border-2 border-black shadow-[4px_4px_0_0_#0A0A0A] hover:shadow-[6px_6px_0_0_#0A0A0A] hover:-translate-y-0.5 active:translate-y-0 active:shadow-[2px_2px_0_0_#0A0A0A] transition-all"
+                >
+                  <span>SEND MESSAGE</span>
+                  <Send className="w-4 h-4" />
+                </button>
+              </form>
             </div>
-          </motion.div>
-
-          {/* Right: Form */}
-          <motion.form 
-            initial={{ opacity: 0, x: 40 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.6 }}
-            className="flex flex-col flex-1 gap-10 md:max-w-md w-full mx-auto"
-            action="https://formsubmit.co/rajaryan3572@gmail.com" 
-            method="POST"
-          >
-            {/* FormSubmit Configuration */}
-            <input type="hidden" name="_subject" value="New submission from your Portfolio!" />
-            <input type="hidden" name="_captcha" value="false" />
-            <input type="hidden" name="_template" value="box" />
-            <div className="relative">
-              <input required type="text" id="name" name="name" placeholder=" " className="peer w-full bg-transparent border-b-2 border-neutral-300 py-3 text-lg font-bold text-black focus:outline-none focus:border-[#ff5500] transition-colors" />
-              <label htmlFor="name" className="absolute left-0 top-3 text-xs font-black tracking-widest text-neutral-400 uppercase transition-all peer-focus:-top-5 peer-focus:text-[#ff5500] peer-focus:text-[10px] peer-not-placeholder-shown:-top-5 peer-not-placeholder-shown:text-[10px] cursor-text">Name</label>
-            </div>
-
-            <div className="relative">
-              <input required type="email" id="email" name="email" placeholder=" " className="peer w-full bg-transparent border-b-2 border-neutral-300 py-3 text-lg font-bold text-black focus:outline-none focus:border-[#ff5500] transition-colors" />
-              <label htmlFor="email" className="absolute left-0 top-3 text-xs font-black tracking-widest text-neutral-400 uppercase transition-all peer-focus:-top-5 peer-focus:text-[#ff5500] peer-focus:text-[10px] peer-not-placeholder-shown:-top-5 peer-not-placeholder-shown:text-[10px] cursor-text">Email</label>
-            </div>
-
-            <div className="relative mt-2">
-              <textarea required id="message" name="message" rows={1} placeholder=" " className="peer w-full bg-transparent border-b-2 border-neutral-300 py-3 text-lg font-bold text-black focus:outline-none focus:border-[#ff5500] transition-colors resize-none overflow-hidden min-h-[40px]"></textarea>
-              <label htmlFor="message" className="absolute left-0 top-3 text-xs font-black tracking-widest text-neutral-400 uppercase transition-all peer-focus:-top-5 peer-focus:text-[#ff5500] peer-focus:text-[10px] peer-not-placeholder-shown:-top-5 peer-not-placeholder-shown:text-[10px] cursor-text">Message</label>
-            </div>
-
-            <button type="submit" className="group mt-6 w-fit bg-black text-white px-8 py-4 rounded-full font-black text-sm tracking-widest flex items-center gap-3 transition-transform hover:-translate-y-1 active:translate-y-0" style={{ boxShadow: "6px 6px 0px 0px #ff5500" }}>
-              SEND MESSAGE
-              <Send className="w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-            </button>
-          </motion.form>
+          </div>
 
         </div>
 
-      </div>
-      
-      {/* Footer Area */}
-      <div className="w-full border-t-[3px] border-neutral-100 mt-40 pt-10 px-6 flex flex-col md:flex-row gap-6 justify-between items-center text-xs font-black tracking-widest text-neutral-400 uppercase max-w-7xl mx-auto">
-        <p className="text-center md:text-left">&copy; {new Date().getFullYear()} Aryan Raj. All rights reserved.</p>
-        <button onClick={scrollToTop} className="hover:text-black transition-colors flex items-center gap-2">
-          BACK TO TOP &uarr;
-        </button>
-      </div>
+        {/* Footer Area */}
+        <div className="mt-16 sm:mt-24 lg:mt-28 pt-8 sm:pt-10 border-t-2 border-black flex flex-col sm:flex-row items-center justify-between gap-6 text-xs font-mono font-bold text-neutral-600">
+          <div className="flex items-center gap-2">
+            <span className="w-2 h-2 rounded-full bg-[#FF5800]" />
+            <span>&copy; {new Date().getFullYear()} ARYAN RAJ. ALL RIGHTS RESERVED.</span>
+          </div>
 
+          <div className="flex items-center gap-6">
+            <span>PUNE, IN · IST (+05:30)</span>
+            <button
+              onClick={scrollToTop}
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border-2 border-black bg-white text-[#0A0A0A] shadow-[2px_2px_0_0_#0A0A0A] hover:shadow-[3px_3px_0_0_#FF5800] hover:-translate-y-0.5 transition-all text-xs font-black uppercase"
+            >
+              <span>TOP</span>
+              <ArrowUp className="w-3.5 h-3.5" />
+            </button>
+          </div>
+        </div>
+
+      </div>
     </section>
   );
 }
